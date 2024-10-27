@@ -22,9 +22,15 @@ class ProductsController extends AbstractController
             ], $request->headers->get('force_fail'));
         }
 
+        /** @var LowestPriceEnquiry $lowestPriceEnquiry */
         $lowestPriceEnquiry = $serializer->deserialize($request->getContent(), LowestPriceEnquiry::class, 'json');
 
-        dd($lowestPriceEnquiry);
+        $lowestPriceEnquiry->setDiscountedPrice(50);
+        $lowestPriceEnquiry->setPrice(100);
+        $lowestPriceEnquiry->setPromotionId(3);
+        $lowestPriceEnquiry->setPromotionName('Black Friday Sale');
+
+        return new JsonResponse($lowestPriceEnquiry,200);
 
         return new JsonResponse([
             'quantity' => 5,
