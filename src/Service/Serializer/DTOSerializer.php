@@ -19,7 +19,8 @@ class DTOSerializer implements SerializerInterface
         $this->serializer = new Serializer(
             [new ObjectNormalizer(
                 classMetadataFactory: new ClassMetadataFactory(new AttributeLoader()),
-                nameConverter: new CamelCaseToSnakeCaseNameConverter())],
+                nameConverter: new CamelCaseToSnakeCaseNameConverter()
+            )],
             [new JsonEncoder()]
         );
     }
