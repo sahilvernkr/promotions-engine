@@ -7,7 +7,7 @@ use App\Entity\Product;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
 class LowestPriceEnquiry implements PromotionEnquiryInterface
-{   
+{
     #[Ignore]
     private ?Product $product;
     private ?int $quantity;
@@ -212,11 +212,6 @@ class LowestPriceEnquiry implements PromotionEnquiryInterface
         $this->promotionName = $promotionName;
 
         return $this;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return get_object_vars($this);
     }
 
     /**
