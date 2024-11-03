@@ -6,7 +6,10 @@ use App\Entity\Promotion;
 use App\DTO\PromotionEnquiryInterface;
 
 class DateRangeMultiplier implements PriceModifierInterface
-{
+{   
+    /**
+     * @param LowestPriceEnquiry $enquiry
+     */
     public function modify(int $price, int $quantity, Promotion $promotion, PromotionEnquiryInterface $enquiry): int
     {
         $requestDate = date_create($enquiry->getRequestDate());

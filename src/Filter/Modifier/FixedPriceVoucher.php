@@ -7,6 +7,9 @@ use App\DTO\PromotionEnquiryInterface;
 
 class FixedPriceVoucher implements PriceModifierInterface
 {
+    /**
+     * @param LowestPriceEnquiry $enquiry
+     */
     public function modify(int $price, int $quantity, Promotion $promotion, PromotionEnquiryInterface $enquiry): int
     {
         if (!($enquiry->getVoucherCode() === $promotion->getCriteria()['code'])) {
