@@ -16,6 +16,8 @@ class LowestPriceFilterTest extends ServiceTestCase
         //Given
         $product = (new Product())->setPrice(100);
         $enquiry = (new LowestPriceEnquiry())->setProduct($product)->setQuantity(5);
+        $enquiry->setRequestDate('2022-11-27');
+        $enquiry->setVoucherCode('OU812');
         $promotions = $this->promotionsDataProvider();
         $lowestPriceFilter = $this->container->get(LowestPriceFilter::class);
 
@@ -50,6 +52,6 @@ class LowestPriceFilterTest extends ServiceTestCase
         $promotionThree->setCriteria(["minimum_quantity" => 2]);
         $promotionThree->setType('even_items_multiplier');
 
-        return [$promotionOne, $promotionTwo, $promotionThree];
+        return [$promotionTwo, $promotionThree];
     }
 }

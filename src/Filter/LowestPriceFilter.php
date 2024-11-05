@@ -9,6 +9,7 @@ use App\Filter\Modifier\Factory\PriceModifierFactoryInterface;
 class LowestPriceFilter implements PromotionsFilterInterface
 {
   public function __construct(private PriceModifierFactoryInterface  $priceModifierFactory) {}
+
   public function apply(PromotionEnquiryInterface $enquiry, Promotion ...$promotions): PromotionEnquiryInterface
   {
     $price = $enquiry->getProduct()->getPrice();
