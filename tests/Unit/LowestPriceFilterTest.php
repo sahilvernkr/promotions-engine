@@ -29,7 +29,7 @@ class LowestPriceFilterTest extends ServiceTestCase
 
         $this->assertSame(250, $filteredEnquiry->getDiscountedPrice());
         $this->assertSame(100, $filteredEnquiry->getPrice());
-        $this->assertSame('Black Friday Sale', $filteredEnquiry->getPromotionName());
+        $this->assertSame('Black Friday half price sale', $filteredEnquiry->getPromotionName());
     }
 
     public function promotionsDataProvider(): array
@@ -52,6 +52,6 @@ class LowestPriceFilterTest extends ServiceTestCase
         $promotionThree->setCriteria(["minimum_quantity" => 2]);
         $promotionThree->setType('even_items_multiplier');
 
-        return [$promotionTwo, $promotionThree];
+        return [$promotionOne, $promotionTwo, $promotionThree];
     }
 }
