@@ -10,6 +10,9 @@ class LowestPriceFilter implements PromotionsFilterInterface
 {
   public function __construct(private PriceModifierFactoryInterface  $priceModifierFactory) {}
 
+  /**
+   * @param LowestPriceEnquiry $enquiry
+   */
   public function apply(PromotionEnquiryInterface $enquiry, Promotion ...$promotions): PromotionEnquiryInterface
   {
     $price = $enquiry->getProduct()->getPrice();

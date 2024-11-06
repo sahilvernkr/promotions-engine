@@ -21,7 +21,6 @@ class LowestPriceFilterTest extends ServiceTestCase
         $promotions = $this->promotionsDataProvider();
         $lowestPriceFilter = $this->container->get(LowestPriceFilter::class);
 
-
         //When
         $filteredEnquiry = $lowestPriceFilter->apply($enquiry, ...$promotions);
 
