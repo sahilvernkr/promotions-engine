@@ -47,7 +47,6 @@ class PriceModifiersTest extends ServiceTestCase
         $promotion->setCriteria(["code" => "OU812"]);
         $promotion->setType('fixed_price_voucher');
 
-
         $enquiry = new LowestPriceEnquiry();
         $enquiry->setQuantity(5);
         $enquiry->setVoucherCode('OU812');
