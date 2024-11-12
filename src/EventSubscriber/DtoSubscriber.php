@@ -4,9 +4,13 @@ namespace App\EventSubscriber;
 
 use App\Event\AfterDtoCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class DtoSubscriber implements EventSubscriberInterface
 {
+    public function __construct(private ValidatorInterface $validator) {}
+    
     public static function getSubscribedEvents()
     {
         return [
@@ -16,6 +20,12 @@ class DtoSubscriber implements EventSubscriberInterface
 
     public function validateDto(AfterDtoCreatedEvent $event): void
     {
-        //TODO: validate the dto
+        $dto = $event->getDto();
+
+        $errors = $this->validator->validate($dto);
+
+        if(count($errors) > 0){
+            throw new ValidationFailedException('validation failed', $errors);
+        }
     }
 }
