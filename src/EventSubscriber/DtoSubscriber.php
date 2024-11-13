@@ -11,7 +11,7 @@ class DtoSubscriber implements EventSubscriberInterface
 {
     public function __construct(private ValidatorInterface $validator) {}
     
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             AfterDtoCreatedEvent::NAME => 'validateDto'
