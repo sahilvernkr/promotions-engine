@@ -15,8 +15,7 @@ class DtoSubscriber implements EventSubscriberInterface
     {
         return [
             AfterDtoCreatedEvent::NAME => [
-                ['validateDto', 100],
-                ['doSomethingElse', 1]
+                'validateDto'
             ]
         ];
     }
@@ -30,9 +29,5 @@ class DtoSubscriber implements EventSubscriberInterface
         if (count($errors) > 0) {
             throw new ValidationFailedException('validation failed', $errors);
         }
-    }
-
-    public function doSomethingElse(){
-        dd('doing something else');
     }
 }
