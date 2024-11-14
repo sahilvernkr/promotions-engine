@@ -10,11 +10,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class DtoSubscriber implements EventSubscriberInterface
 {
     public function __construct(private ValidatorInterface $validator) {}
-    
+
     public static function getSubscribedEvents(): array
     {
         return [
-            AfterDtoCreatedEvent::NAME => 'validateDto'
+            AfterDtoCreatedEvent::NAME => [
+                ['validateDto', 100],
+                ['doSomethingElse', 1]
+            ]
         ];
     }
 
@@ -24,8 +27,12 @@ class DtoSubscriber implements EventSubscriberInterface
 
         $errors = $this->validator->validate($dto);
 
-        if(count($errors) > 0){
+        if (count($errors) > 0) {
             throw new ValidationFailedException('validation failed', $errors);
         }
+    }
+
+    public function doSomethingElse(){
+        dd('doing something else');
     }
 }
