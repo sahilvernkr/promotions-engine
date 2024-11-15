@@ -18,7 +18,7 @@ class DTOSerializer implements SerializerInterface
     private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(EventDispatcherInterface $eventDispatcher)
-    {   
+    {
         $this->eventDispatcher = $eventDispatcher;
         $this->serializer = new Serializer(
             [new ObjectNormalizer(
@@ -37,7 +37,7 @@ class DTOSerializer implements SerializerInterface
     public function deserialize(mixed $data, string $type, string $format, array $context = []): mixed
     {
         $dto =  $this->serializer->deserialize($data, $type, $format, $context);
-        
+
         //fire an event here
         $event = new AfterDtoCreatedEvent($dto);
         $this->eventDispatcher->dispatch($event, $event::NAME);

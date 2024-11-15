@@ -5,8 +5,8 @@ namespace App\Tests\Unit;
 use App\Tests\ServiceTestCase;
 use App\DTO\LowestPriceEnquiry;
 use App\Event\AfterDtoCreatedEvent;
-use Symfony\Component\Validator\Exception\ValidationFailedException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 
 class DtoSubscriberTest extends ServiceTestCase
