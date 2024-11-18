@@ -39,7 +39,8 @@ class ProductsController extends AbstractController
         /** @var LowestPriceEnquiry $lowestPriceEnquiry */
         $lowestPriceEnquiry = $serializer->deserialize($request->getContent(), LowestPriceEnquiry::class, 'json');
 
-        $product = $this->repository->find($id);
+        $product = $this->repository->findOrFail($id);
+
         $lowestPriceEnquiry->setProduct($product);
 
         $promotions = $promotionCache->findValidProduct($product, $lowestPriceEnquiry->getRequestDate());
