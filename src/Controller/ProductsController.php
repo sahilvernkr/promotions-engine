@@ -9,6 +9,7 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Filter\PromotionsFilterInterface;
 use App\Service\Serializer\DTOSerializer;
+use JsonException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,12 +31,6 @@ class ProductsController extends AbstractController
         PromotionsFilterInterface $promotionsFilterApply,
         PromotionCache $promotionCache
     ): Response {
-        if ($request->headers->has('force_fail')) {
-            return new JsonResponse([
-                'error' => 'Promotions Engine failure message'
-            ], $request->headers->get('force_fail'));
-        }
-
         /** @var LowestPriceEnquiry $lowestPriceEnquiry */
         $lowestPriceEnquiry = $serializer->deserialize($request->getContent(), LowestPriceEnquiry::class, 'json');
 
